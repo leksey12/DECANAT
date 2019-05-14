@@ -11,6 +11,8 @@ namespace DECANAT
 {
     public partial class Startup
     {
+        private const string appID = "5940864";
+        private const string appSecret = "RdPFBQxbWcY7s56lFkh6";
         // Дополнительные сведения о настройке аутентификации см. на странице https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
@@ -58,11 +60,11 @@ namespace DECANAT
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "38551863891-9ci3etde7r49aqcd9lsehrgmunmsf0em.apps.googleusercontent.com",
+                ClientSecret = "7JK1v6It3pklBesYIMw3bXKx"
+            });
         }
     }
 }

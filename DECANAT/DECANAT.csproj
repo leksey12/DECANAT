@@ -18,7 +18,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44344</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -173,7 +173,30 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ModelData\Discipline.cs" />
+    <Compile Include="ModelData\DisciplineStudy.cs" />
+    <Compile Include="ModelData\Faculty.cs" />
+    <Compile Include="ModelData\Group.cs" />
+    <Compile Include="ModelData\Lab.cs" />
+    <Compile Include="ModelData\LabProgress.cs" />
+    <Compile Include="ModelData\NewDiscipline.cs" />
+    <Compile Include="ModelData\NewFaculty.cs" />
+    <Compile Include="ModelData\NewLab.cs" />
+    <Compile Include="ModelData\NewSpeciality.cs" />
+    <Compile Include="ModelData\NewStudent.cs" />
+    <Compile Include="ModelData\NewTeacher.cs" />
+    <Compile Include="ModelData\NewUserRole.cs" />
+    <Compile Include="ModelData\NewWork.cs" />
+    <Compile Include="ModelData\Speciality.cs" />
+    <Compile Include="ModelData\Student.cs" />
+    <Compile Include="ModelData\Study.cs" />
+    <Compile Include="ModelData\Subgroup.cs" />
+    <Compile Include="ModelData\Teacher.cs" />
+    <Compile Include="ModelData\TeacherWork.cs" />
+    <Compile Include="ModelData\UserRole.cs" />
+    <Compile Include="ModelData\Work.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AppDbInitializer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -212,8 +235,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -270,7 +291,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59181</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:59181/</IISUrl>
+          <IISUrl>https://localhost:44344/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
