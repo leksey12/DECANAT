@@ -6,6 +6,9 @@ namespace DECANAT.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
+        [Display(Name = "ФИО пользователя")]
+        public string Username { get; set; }
+        [Required]
         [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
     }
@@ -64,6 +67,9 @@ namespace DECANAT.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "ФИО пользователя")]
+        public string Username { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Адрес электронной почты")]
