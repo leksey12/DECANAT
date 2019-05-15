@@ -163,5 +163,83 @@ namespace DECANAT.Controllers
             }
         }
         #endregion
+        #region DISCIPLINES
+        public ActionResult Disciplines(int speciality_id)
+        {
+            Speciality speciality = UnitOfWork.Specialitys.Get(speciality_id);
+            ViewBag.faculty_id = speciality.faculty_code;
+            ViewBag.speciality_id = speciality_id;
+            ViewBag.faculty = speciality.faculty_name;
+            ViewBag.speciality_name = speciality.speciality_name;
+            ViewBag.speciality_number = speciality.speciality_number;
+            return View(UnitOfWork.Disciplines.GetAll("where \"Код_специальности\"=" + speciality_id));
+        }
+        public ActionResult AddDiscipline(int speciality_id)
+        {
+            Speciality speciality = UnitOfWork.Specialitys.Get(speciality_id);
+            Discipline discipline = new Discipline
+            {
+                faculty_name = speciality.faculty_name,
+                faculty_code = speciality.faculty_code,
+                speciality_code = speciality.id,
+                speciality_name = speciality.speciality_name,
+                speciality_number = speciality.speciality_number
+            };
+            return View(discipline);
+        }
+        [HttpPost]
+        public ActionResult AddDiscipline(Discipline discipline)
+        {
+            try
+            {
+                UnitOfWork.Disciplines.Create(discipline);
+                return RedirectToAction("Disciplines", new { speciality_id = discipline.speciality_code });
+            }
+            catch
+            {
+                ModelState.AddModelError("discipline_name", "ошибка добавления, возможно такая дисциплина уже есть?");
+                return View(discipline);
+            }
+
+        }
+        public ActionResult EditDiscipline(int id)
+        {
+            NewDiscipline discipline = UnitOfWork.Disciplines.Get(id);
+            return View(discipline);
+        }
+        [HttpPost]
+        public ActionResult EditDiscipline(NewDiscipline discipline)
+        {
+            try
+            {
+                UnitOfWork.Disciplines.Update(discipline);
+                return RedirectToAction("Disciplines", new { speciality_id = discipline.speciality_code });
+            }
+            catch
+            {
+                ModelState.AddModelError("newDisciplineName", "ошибка переименования, возможно такая дисциплина уже есть?");
+                return View(discipline);
+            }
+        }
+        public ActionResult DeleteDiscipline(int id)
+        {
+            Discipline discipline = UnitOfWork.Disciplines.Get(id);
+            return View(discipline);
+        }
+        [HttpPost]
+        public ActionResult DeleteDiscipline(Discipline discipline)
+        {
+            try
+            {
+                UnitOfWork.Disciplines.Delete(discipline.id);
+                return RedirectToAction("Disciplines", new { speciality_id = discipline.speciality_code });
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("discipline_name", "Невозможно удалить эту дисциплину, так как она не пустая");
+                return View(discipline);
+            }
+        }
+        #endregion
     }
 }

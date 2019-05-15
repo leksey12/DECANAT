@@ -25,5 +25,14 @@ namespace DECANAT.Repozitory
                 return specialitys;
             }
         }
+        private static DisciplineRepozitory disciplines;
+        public static DisciplineRepozitory Disciplines
+        {
+            get
+            {
+                if (disciplines == null) disciplines = new DisciplineRepozitory();
+                return disciplines;
+            }
+        }
     }
 }
