@@ -52,5 +52,14 @@ namespace DECANAT.Repozitory
                 return subgroups;
             }
         }
+        private static StudentRepozitory students;
+        public static StudentRepozitory Students
+        {
+            get
+            {
+                if (students == null) students = new StudentRepozitory();
+                return students;
+            }
+        }
     }
 }

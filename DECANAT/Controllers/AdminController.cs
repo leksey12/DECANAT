@@ -361,5 +361,89 @@ namespace DECANAT.Controllers
             }
         }
         #endregion
+        #region STUDENTS
+        public ActionResult Students(int subgroup_id)
+        {
+            Subgroup subgroup = UnitOfWork.Subgroups.Get(subgroup_id);
+            ViewBag.group_id = subgroup.group_id;
+            ViewBag.subgroup_id = subgroup_id;
+            ViewBag.faculty = subgroup.faculty_name;
+            ViewBag.speciality_name = subgroup.speciality_name;
+            ViewBag.speciality_number = subgroup.speciality_number;
+            ViewBag.coors = subgroup.coors;
+            ViewBag.group_number = subgroup.group_number;
+            ViewBag.subgroup_number = subgroup.subgroup_number;
+            IEnumerable<Subgroup> subgroups = UnitOfWork.Students.GetAll("where \"Код_подгруппы\"=" + subgroup_id);
+            return View(subgroups);
+        }
+        public ActionResult AddStudent(int subgroup_id)
+        {
+            Subgroup subgroup = UnitOfWork.Subgroups.Get(subgroup_id);
+            Student student = new Student
+            {
+                speciality_number = subgroup.speciality_number,
+                faculty_name = subgroup.faculty_name,
+                speciality_name = subgroup.speciality_name,
+                group_number = subgroup.group_number,
+                subgroup_number = subgroup.subgroup_number,
+                coors = subgroup.coors,
+                subgroup_id = subgroup_id
+            };
+            return View(student);
+        }
+        [HttpPost]
+        public ActionResult AddStudent(Student student)
+        {
+            try
+            {
+                UnitOfWork.Students.Create(student);
+                return RedirectToAction("Students", new { subgroup_id = student.subgroup_id });
+            }
+            catch
+            {
+                ModelState.AddModelError("FIO", "ошибка добавления, возможно такой студент уже есть?");
+                return View(student);
+            }
+
+        }
+        public ActionResult EditStudent(int id)
+        {
+            NewStudent student = UnitOfWork.Students.Get(id);
+            return View(student);
+        }
+        [HttpPost]
+        public ActionResult EditStudent(NewStudent student)
+        {
+            try
+            {
+                UnitOfWork.Students.Update(student);
+                return RedirectToAction("Students", new { subgroup_id = student.subgroup_id });
+            }
+            catch
+            {
+                ModelState.AddModelError("FIO", "ошибка переименования, возможно такой студент уже есть?");
+                return View(student);
+            }
+        }
+        public ActionResult DeleteStudent(int id)
+        {
+            Student student = UnitOfWork.Students.Get(id);
+            return View(student);
+        }
+        [HttpPost]
+        public ActionResult DeleteStudent(Student student)
+        {
+            try
+            {
+                UnitOfWork.Students.Delete(student.id);
+                return RedirectToAction("Students", new { subgroup_id = student.subgroup_id });
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("FIO", "ошибка удаления студента");
+                return View(student);
+            }
+        }
+        #endregion
     }
 }

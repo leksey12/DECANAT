@@ -1,0 +1,58 @@
+﻿@model List<DECANAT.ModelData.Student>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Поиск в базе студентов</h2>
+<body>
+@using(Html.BeginForm(FormMethod.Get))
+{
+    <div class="form-vertical">
+        @if (ViewBag.querry == ""){<h4>Введите часть ФИО студента для поиска</h4>}
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+                @Html.Editor("name", new { htmlAttributes = new {@value=ViewBag.querry, @class = "form-control" } })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Поиск" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+    <table id="main-table">
+        <thead>
+            <tr>
+                <th>Студент</th>
+                <th>Курс-группа-подгруппа</th>
+                <th>Факультет</th>
+                <th>Специальность</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td>@Model[i].FIO</td>
+                        <td>@Model[i].coors-@Model[i].group_number-@Model[i].subgroup_number</td>
+                        <td>@Model[i].faculty_name</td>
+                        <td>@Model[i].speciality_name (@Model[i].speciality_number)</td>
+                        <td class="clicable" onclick="this.getElementsByTagName('a')[0].click()">
+                            @Html.ActionLink("Выбрать", "Student", new { id = Model[i].id, quarry = ViewBag.querry })
+                    </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        document.onload = new function ()
+        {
+            $('#main-table').DataTable(russian_lang);
+        }
+    </script>
+</body>
