@@ -211,6 +211,8 @@
     <Compile Include="Repository\FacultiesRepository.cs" />
     <Compile Include="Repository\GroupRepozitory.cs" />
     <Compile Include="Repository\Interfaces\IRepository.cs" />
+    <Compile Include="Repository\LabProgressRepozitory.cs" />
+    <Compile Include="Repository\LabRepozitory.cs" />
     <Compile Include="Repository\SpecialityRepozitory.cs" />
     <Compile Include="Repository\StudentRepozitory.cs" />
     <Compile Include="Repository\SubgroupRepozitory.cs" />
@@ -301,10 +303,18 @@
     <Content Include="Views\Admin\EditTeacher.cshtml" />
     <Content Include="Views\Admin\Teachers.cshtml" />
     <Content Include="Views\Admin\Works.cshtml" />
+    <Content Include="Views\Student\Student.cshtml" />
+    <Content Include="Views\Teacher\AddLab.cshtml" />
+    <Content Include="Views\Teacher\ChangeLabStatus.cshtml" />
+    <Content Include="Views\Teacher\DeleteLab.cshtml" />
+    <Content Include="Views\Teacher\EditLab.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Teacher\Labs.cshtml" />
+    <Content Include="Views\Teacher\LabsList.cshtml" />
+    <Content Include="Views\Teacher\LabsOnDisciplineList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Teacher\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

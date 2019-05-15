@@ -79,5 +79,23 @@ namespace DECANAT.Repozitory
                 return teachers;
             }
         }
+        private static LabRepozitory labs;
+        public static LabRepozitory Labs
+        {
+            get
+            {
+                if (labs == null) labs = new LabRepozitory();
+                return labs;
+            }
+        }
+        private static LabProgressRepozitory labProgress;
+        public static LabProgressRepozitory LabProgress
+        {
+            get
+            {
+                if (labProgress == null) labProgress = new LabProgressRepozitory();
+                return labProgress;
+            }
+        }
     }
 }

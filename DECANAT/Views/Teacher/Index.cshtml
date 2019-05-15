@@ -1,0 +1,39 @@
+﻿@using DECANAT.ModelData;
+@model List<Work>
+@{
+    ViewBag.Title = "Преподаватель";
+}
+<body>
+    <table id="main-table">
+        <thead>
+            <tr>
+                <th>Преподаватель</th>
+                <th>Специальность</th>
+                <th>Дисциплина</th>
+                <th>Курс-группа-подгруппа</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td>@Model[i].teacher_name</td>
+                        <td>@Model[i].speciality_name (@Model[i].speciality_number)</td>
+                        <td>@Model[i].discipline_name</td>
+                        <td>@Model[i].coors-@Model[i].group_number-@Model[i].subgroup_number</td>
+                        <td class="clicable" onclick="this.firstChild.click()">@Html.ActionLink("Подробнее", "Labs", 
+                        new { discipline_id = Model[i].discipline_id,subgroup_id = Model[i].subgroup_id })</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        document.onload = new function () 
+        {
+            $('#main-table').DataTable(russian_lang);
+        }
+    </script>
+</body>

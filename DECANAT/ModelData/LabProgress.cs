@@ -8,27 +8,87 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DECANAT.ModelData
 {
+    
     public enum LabStatus{Complete,NotComlete,Wait,Error}
+
+    /// <summary>
+    /// Модель успеваемости
+    /// </summary>
     public class LabProgress
     {
+        /// <summary>
+        /// Идентификатор успеваемости
+        /// </summary>
         public int id { get; set; }
+
+        /// <summary>
+        /// Идентификатор студента
+        /// </summary>
         public int student_id { get; set; }
+
+        /// <summary>
+        /// Идентификатор специальности
+        /// </summary>
         public string speciality_id { get; set; }
+
+        /// <summary>
+        /// Название дисциплины
+        /// </summary>
         [Display(Name = "Дисциплина")]
         public string discipline_name { get; set; }
+
+        /// <summary>
+        /// Идентификатор дисциплины
+        /// </summary>
         public int discipline_id { get; set; }
+
+        /// <summary>
+        /// Идентификатор преподователя
+        /// </summary>
         public string teacher_id { get; set; }
+
+        /// <summary>
+        /// Название преподователя
+        /// </summary>
         [Display(Name = "Преподаватель")]
         public string teacher_name {get;set;}
+
+        /// <summary>
+        /// ФИО студента
+        /// </summary>
         [Display(Name = "Студент")]
         public string student_name { get; set; }
+
+        /// <summary>
+        /// Курс
+        /// </summary>
         public int coors { get; set; }
+
+        /// <summary>
+        /// Идентификатор подгруппы
+        /// </summary>
         public int subgroop_id { get; set; }
+
+        /// <summary>
+        ///  Номер подгруппы
+        /// </summary>
         public int subgroop_number { get; set; }
+
+        /// <summary>
+        /// Номер группы
+        /// </summary>
         public int group_number { get; set; }
+
+        /// <summary>
+        /// Название лаборатной
+        /// </summary>
         [Display(Name = "Лабораторная")]
         public string lab_name { get; set; }
         private LabStatus status;
+
+        /// <summary>
+        /// Статус лабораторной
+        /// </summary>
         [Required]
         [Display(Name = "Статус лабораторной")]
         public string lab_status

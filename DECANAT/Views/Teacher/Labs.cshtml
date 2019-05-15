@@ -1,0 +1,73 @@
+﻿@model List<KeyValuePair<string, List<DECANAT.ModelData.LabProgress>>>
+@{
+    ViewBag.Title = "Labs";
+}
+<h3>Дисциплина: @ViewBag.discipline_name</h3>
+<h3>Курс-группа-подгруппа: @ViewBag.coors-@ViewBag.group_number-@ViewBag.subgroup_number</h3>
+<body>
+        @{
+            if (Model.Count > 0)
+            {
+                List<DECANAT.ModelData.LabProgress> current_list;
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    current_list = Model.ElementAt(i).Value;
+                    <div class="page_menu"><span>@current_list[0].student_name 
+                        (Сдано лабораторных: @current_list.Count(element=>element.lab_status == "Сдано") из @current_list.Count())</span>
+                        <div>
+                            <table id="main-table_@i">
+                                <thead>
+                                    <tr>
+                                        <th>Лабораторная</th>
+                                        <th>Статус</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int j = 0; j < current_list.Count; j++)
+                                    {
+                                        <tr>
+                                            <td>@current_list[j].lab_name</td>
+                                            <td class="clicable" onclick="this.firstChild.click()">
+                                                @Html.ActionLink(current_list[j].lab_status, "ChangeLabStatus", new { id = current_list[j].id })
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+            <h3>Не найдено данных в базе</h3>
+        }
+    }
+                    <div>
+                        @Html.ActionLink("Назад", "Index")
+                    </div>
+                    <script type="text/javascript">
+                        document.onload = new function () {
+                            russian_lang.createdRow = function (row, data, index) {
+                                var elem = data[1];
+                                if (~elem.indexOf("Сдано")) {
+                                    $('td', row).addClass("green");
+                                }
+                                else if (~elem.indexOf("Не сдано")) {
+                                    $('td', row).addClass("red");
+                                }
+                                else if (~elem.indexOf("Проверяется")) {
+                                    $('td', row).addClass("orange");
+                                }
+                            }
+                            var $nodes = $('table[id^=main-table]');
+                            $.each($nodes, function (index, element) {
+                                var span = element.parentNode.parentNode.firstChild;
+                                var class_div = element.parentNode.parentNode;
+                                span.onclick = function(){$(class_div).toggleClass("page_menu_open page_menu")};
+                            })
+                            
+                            $nodes.DataTable(russian_lang);
+                        };
+                    </script>
+                </body>

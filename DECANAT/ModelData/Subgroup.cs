@@ -12,7 +12,7 @@ namespace DECANAT.ModelData
     public class Subgroup : Group
     {
         /// <summary>
-        /// Подгруппа
+        /// Номер подгруппа
         /// </summary>
         [Required]
         [Display(Name = "Подгруппа")]

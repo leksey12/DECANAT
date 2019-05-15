@@ -23,6 +23,13 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
+                        <a href="#">Преподаватель</a>
+                        <ul class="dropdown-menu nav navbar-nav">
+                            <li>@Html.ActionLink("Успеваемость", "Index", "Teacher")</li>
+                            <li>@Html.ActionLink("Редактирование лабораторных", "LabsList", "Teacher")</li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="#">Администратор</a>
                         <ul class="dropdown-menu nav navbar-nav">
                             <li>@Html.ActionLink("Факультеты", "Facultes", "Admin")</li>
