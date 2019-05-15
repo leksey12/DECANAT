@@ -559,5 +559,41 @@ namespace DECANAT.Controllers
             }
         }
         #endregion
+        #region ROLES
+        public ActionResult Users()
+        {
+            return View(UnitOfWork.Teachers.GetAll(UserManager));
+        }
+        public ActionResult Roles(string id)
+        {
+            UserRole roles = UnitOfWork.Roles.Get(UserManager, id);
+            return View(roles);
+        }
+        public ActionResult DeleteRole(string id, string role)
+        {
+            UnitOfWork.Roles.Delete(UserManager, id, role);
+            return RedirectToAction("Roles", new { id = id });
+        }
+        public ActionResult AddRole(string id)
+        {
+            NewUserRole user = UnitOfWork.Roles.Get(UserManager, id);
+            user.roles_list = UnitOfWork.Roles.GetAllRoles();
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult AddRole(NewUserRole user)
+        {
+            try
+            {
+                UnitOfWork.Roles.Add(UserManager, user.id, user.new_role);
+                return RedirectToAction("Roles", new { id = user.id });
+            }
+            catch
+            {
+                ModelState.AddModelError("new_role", "ошибка добавления роли");
+                return View(user);
+            }
+        }
+        #endregion
     }
 }

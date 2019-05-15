@@ -97,5 +97,23 @@ namespace DECANAT.Repozitory
                 return labProgress;
             }
         }
+        private static RolesRepozitory roles;
+        public static RolesRepozitory Roles
+        {
+            get
+            {
+                if (roles == null) roles = new RolesRepozitory();
+                return roles;
+            }
+        }
+        private static StudingRepizitory studing;
+        public static StudingRepizitory Studing
+        {
+            get
+            {
+                if (roles == null) studing = new StudingRepizitory();
+                return studing;
+            }
+        }
     }
 }

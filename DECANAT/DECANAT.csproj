@@ -172,6 +172,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DekanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -213,8 +214,10 @@
     <Compile Include="Repository\Interfaces\IRepository.cs" />
     <Compile Include="Repository\LabProgressRepozitory.cs" />
     <Compile Include="Repository\LabRepozitory.cs" />
+    <Compile Include="Repository\RolesRepozitory.cs" />
     <Compile Include="Repository\SpecialityRepozitory.cs" />
     <Compile Include="Repository\StudentRepozitory.cs" />
+    <Compile Include="Repository\StudingRepizitory.cs" />
     <Compile Include="Repository\SubgroupRepozitory.cs" />
     <Compile Include="Repository\TeacherRepozitory.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
@@ -312,9 +315,15 @@
     <Content Include="Views\Teacher\Labs.cshtml" />
     <Content Include="Views\Teacher\LabsList.cshtml" />
     <Content Include="Views\Teacher\LabsOnDisciplineList.cshtml" />
+    <Content Include="Views\Admin\AddRole.cshtml" />
+    <Content Include="Views\Admin\Disciplines.cshtml" />
+    <Content Include="Views\Admin\Roles.cshtml" />
+    <Content Include="Views\Admin\Users.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Decan\" />
+    <Folder Include="Views\Dekan\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Roles";
+}
+
+<h2>Роли пользователя @Model.username (@Model.email)</h2>
+<body>
+    <table id="main-table">
+        <thead>
+            <tr>
+                <th>Привилегия</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                for (int i = 0; i < Model.roles.Count; i++)
+                {
+                    <tr>
+                        <td>@Model.roles[i]</td>
+                        <td class="clicable" onclick="this.getElementsByTagName('a')[0].click()">
+                            @Html.ActionLink("Удалить", "DeleteRole", new { id = Model.id, role = Model.roles[i] })
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div>
+        <button class="clicable btn btn-default" onclick="this.getElementsByTagName('a')[0].click()">
+            @Html.ActionLink("Добавить", "AddRole", new { id = Model.id })
+        </button>
+    </div>
+    <br />
+    @Html.ActionLink("Назад", "Users")
+    <script type="text/javascript">
+        document.onload = new function () {
+            $('#main-table').DataTable(russian_lang);
+        };
+    </script>
+</body>
+
