@@ -1,0 +1,40 @@
+﻿@model List<DECANAT.ModelData.Teacher>
+@{
+    ViewBag.Title = "Teachers";
+}
+
+<h2>Преподаватели</h2>
+<body>
+    <table id="main-table">
+        <thead>
+            <tr>
+                <th>Преподаватель</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td>@Model[i].username</td>
+                        <td>@Model[i].email</td>
+                        <td class="clicable" onclick="this.getElementsByTagName('a')[0].click()">
+                            @Html.ActionLink("Редактировать", "EditTeacher", new { id = Model[i].id })
+                        </td>
+                        <td class="clicable" onclick="this.getElementsByTagName('a')[0].click()">
+                            @Html.ActionLink("Удалить", "DeleteTeacher", new { id = Model[i].id })
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        document.onload = new function () {
+            $('#main-table').DataTable(russian_lang);
+        };
+    </script>
+</body>

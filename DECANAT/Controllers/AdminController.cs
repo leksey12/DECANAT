@@ -445,5 +445,119 @@ namespace DECANAT.Controllers
             }
         }
         #endregion
+        #region WORKS
+        public ActionResult Works(int subgroup_id)
+        {
+            Subgroup subgroup = UnitOfWork.Subgroups.Get(subgroup_id);
+            ViewBag.speciality_name = subgroup.speciality_name;
+            ViewBag.speciality_number = subgroup.speciality_number;
+            ViewBag.coors = subgroup.coors;
+            ViewBag.group_number = subgroup.group_number;
+            ViewBag.subgroup_number = subgroup.subgroup_number;
+            ViewBag.subgroup_id = subgroup.id;
+            ViewBag.group_id = subgroup.group_id;
+            return View(UnitOfWork.Works.GetAll("where \"Код_подгруппы\"=" + subgroup_id));
+        }
+        public ActionResult AddWork(int subgroup_id)
+        {
+            Subgroup subgroup = UnitOfWork.Subgroups.Get(subgroup_id);
+            NewWork workload = new NewWork();
+            workload.work = new Work
+            {
+                faculty_name = subgroup.faculty_name,
+                speciality_name = subgroup.speciality_name,
+                speciality_number = subgroup.speciality_number,
+                subgroup_id = subgroup.id,
+                group_number = subgroup.group_number,
+                subgroup_number = subgroup.subgroup_number,
+                coors = subgroup.coors
+            };
+            workload.teachers = UnitOfWork.Works.GetTeachers();
+            workload.disciplines = UnitOfWork.Works.GetDisciplinesFromSpecialityId(subgroup.speciality_id);
+            return View(workload);
+        }
+        [HttpPost]
+        public ActionResult AddWork(Work work)
+        {
+            try
+            {
+                UnitOfWork.Works.Create(work);
+                return RedirectToAction("Works", new { subgroup_id = work.subgroup_id });
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("error", ParseOracleError(e.Message));
+                NewWork workload = new NewWork();
+                workload.work = work;
+                workload.teachers = UnitOfWork.Works.GetTeachers();
+                workload.disciplines = UnitOfWork.Works.GetDisciplinesFromSpecialityId(work.speciality_id);
+                return View(workload);
+            }
+
+        }
+        public ActionResult DeleteWork(int id)
+        {
+            Work work = UnitOfWork.Works.Get(id);
+            return View(work);
+        }
+        [HttpPost]
+        public ActionResult DeleteWork(Work work)
+        {
+            try
+            {
+                UnitOfWork.Works.Delete(work.id);
+                return RedirectToAction("Works", new { subgroup_id = work.subgroup_id });
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("error", ParseOracleError(e.Message));
+                return View(work);
+            }
+        }
+        #endregion
+        #region TEACHERS
+        public ActionResult Teachers()
+        {
+            return View(UnitOfWork.Teachers.GetAllTeachers(UserManager));
+        }
+        public ActionResult EditTeacher(string id)
+        {
+            NewTeacher student = UnitOfWork.Teachers.Get(UserManager, id);
+            return View(student);
+        }
+        [HttpPost]
+        public ActionResult EditTeacher(NewTeacher teacher)
+        {
+            try
+            {
+                UnitOfWork.Teachers.Update(UserManager, teacher);
+                return RedirectToAction("Teachers");
+            }
+            catch
+            {
+                ModelState.AddModelError("new_username", "ошибка переименования");
+                return View(teacher);
+            }
+        }
+        public ActionResult DeleteTeacher(string id)
+        {
+            Teacher teacher = UnitOfWork.Teachers.Get(UserManager, id);
+            return View(teacher);
+        }
+        [HttpPost]
+        public ActionResult DeleteTeacher(Teacher teacher)
+        {
+            try
+            {
+                UnitOfWork.Teachers.Delete(UserManager, teacher);
+                return RedirectToAction("Teachers");
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("error", ParseOracleError(e.Message));
+                return View(teacher);
+            }
+        }
+        #endregion
     }
 }

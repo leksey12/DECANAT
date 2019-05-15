@@ -61,5 +61,23 @@ namespace DECANAT.Repozitory
                 return students;
             }
         }
+        private static WorkRepository works;
+        public static WorkRepository Works
+        {
+            get
+            {
+                if (works == null) works = new WorkRepository();
+                return works;
+            }
+        }
+        private static TeacherRepozitory teachers;
+        public static TeacherRepozitory Teachers
+        {
+            get
+            {
+                if (teachers == null) teachers = new TeacherRepozitory();
+                return teachers;
+            }
+        }
     }
 }

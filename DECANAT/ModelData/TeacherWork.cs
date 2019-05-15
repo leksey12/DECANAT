@@ -5,6 +5,9 @@ using System.Web;
 
 namespace DECANAT.ModelData
 {
+    /// <summary>
+    /// Связка
+    /// </summary>
     public class TeacherWork
     {
         public string teacher_name { get; set; }

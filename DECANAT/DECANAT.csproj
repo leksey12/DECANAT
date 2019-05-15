@@ -175,6 +175,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,7 +214,9 @@
     <Compile Include="Repository\SpecialityRepozitory.cs" />
     <Compile Include="Repository\StudentRepozitory.cs" />
     <Compile Include="Repository\SubgroupRepozitory.cs" />
+    <Compile Include="Repository\TeacherRepozitory.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
+    <Compile Include="Repository\WorkRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -292,9 +295,16 @@
     <Content Include="Views\Admin\EditStudent.cshtml" />
     <Content Include="Views\Admin\Students.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Admin\AddWork.cshtml" />
+    <Content Include="Views\Admin\DeleteTeacher.cshtml" />
+    <Content Include="Views\Admin\DeleteWork.cshtml" />
+    <Content Include="Views\Admin\EditTeacher.cshtml" />
+    <Content Include="Views\Admin\Teachers.cshtml" />
+    <Content Include="Views\Admin\Works.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Teacher\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

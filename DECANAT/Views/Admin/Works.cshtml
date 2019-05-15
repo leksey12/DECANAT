@@ -1,0 +1,44 @@
+﻿@model List<DECANAT.ModelData.Work>
+@{
+    ViewBag.Title = "Works";
+}
+<h3>Факультет: @ViewBag.faculty</h3>
+<h4>Специальность: @ViewBag.speciality_name (@ViewBag.speciality_number)</h4>
+<h4>Курс-группа-подгруппа: @ViewBag.coors-@ViewBag.group_number-@ViewBag.subgroup_number</h4>
+<body>
+    <table id="main-table">
+        <thead>
+            <tr>
+                <th>Преподаватель</th>
+                <th>Дисциплина</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td>@Model[i].teacher_name</td>
+                        <td>@Model[i].discipline_name</td>
+                        <td class="clicable" onclick="this.getElementsByTagName('a')[0].click()">
+                            @Html.ActionLink("Удалить", "DeleteWork", new { id = Model[i].id })
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div>
+        <button class="clicable btn btn-default" onclick="this.getElementsByTagName('a')[0].click()">
+            @Html.ActionLink("Добавить", "AddWork", new { subgroup_id = ViewBag.subgroup_id })
+        </button>
+    </div>
+    <br />
+    @Html.ActionLink("Назад", "Subgroups", new { group_id = ViewBag.group_id })
+    <script type="text/javascript">
+            document.onload = new function () {
+                $('#main-table').DataTable(russian_lang);
+            };
+    </script>
+</body>
