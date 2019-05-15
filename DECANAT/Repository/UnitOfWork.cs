@@ -34,5 +34,23 @@ namespace DECANAT.Repozitory
                 return disciplines;
             }
         }
+        private static GroupRepozitory groups;
+        public static GroupRepozitory Groups
+        {
+            get
+            {
+                if (groups == null) groups = new GroupRepozitory();
+                return groups;
+            }
+        }
+        private static SubgroupRepozitory subgroups;
+        public static SubgroupRepozitory Subgroups
+        {
+            get
+            {
+                if (subgroups == null) subgroups = new SubgroupRepozitory();
+                return subgroups;
+            }
+        }
     }
 }

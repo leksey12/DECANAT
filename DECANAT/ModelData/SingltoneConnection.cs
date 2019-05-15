@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 
-namespace DECANAT.Models
+namespace DECANAT.ModelData
 {
     public class SingltoneConnection
     {

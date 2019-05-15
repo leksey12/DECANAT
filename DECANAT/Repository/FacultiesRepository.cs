@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using DECANAT.ModelData;
-using DECANAT.Models;
 using Oracle.ManagedDataAccess.Client;
 
 namespace DECANAT.Repozitory

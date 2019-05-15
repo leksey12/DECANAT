@@ -241,5 +241,125 @@ namespace DECANAT.Controllers
             }
         }
         #endregion
+        #region GROUPS
+        public ActionResult Groups(int speciality_id)
+        {
+            Speciality speciality = UnitOfWork.Specialitys.Get(speciality_id);
+            ViewBag.faculty_id = speciality.faculty_code;
+            ViewBag.faculty = speciality.faculty_name;
+            ViewBag.speciality_name = speciality.speciality_name;
+            ViewBag.speciality_number = speciality.speciality_number;
+            ViewBag.speciality_id = speciality.id;
+            return View(UnitOfWork.Groups.GetAll("where \"Код_специальности\"=" + speciality_id));
+        }
+        public ActionResult AddGroup(int speciality_id)
+        {
+            Speciality speciality = UnitOfWork.Specialitys.Get(speciality_id);
+            Group group = new Group
+            {
+                faculty_name = speciality.faculty_name,
+                speciality_number = speciality.speciality_number,
+                speciality_name = speciality.speciality_name,
+                speciality_id = speciality.id
+            };
+            return View(group);
+        }
+        [HttpPost]
+        public ActionResult AddGroup(Group group)
+        {
+            try
+            {
+                UnitOfWork.Groups.Create(group);
+                return RedirectToAction("Groups", new { speciality_id = group.speciality_id });
+            }
+            catch
+            {
+                ModelState.AddModelError("group_number", "ошибка добавления, возможно такая группа уже есть?");
+                return View(group);
+            }
+
+        }
+        public ActionResult DeleteGroup(int id)
+        {
+            return View(UnitOfWork.Groups.Get(id));
+        }
+        [HttpPost]
+        public ActionResult DeleteGroup(Group group)
+        {
+            try
+            {
+                UnitOfWork.Groups.Delete(group.id);
+                return RedirectToAction("Groups", new { speciality_id = group.speciality_id });
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("group_number", "ошибка удаления, данная группа не пуста");
+                return View(group);
+            }
+        }
+        #endregion
+        #region SUBGROUPS
+        public ActionResult Subgroups(int group_id)
+        {
+            Group group = UnitOfWork.Groups.Get(group_id);
+            ViewBag.speciality_id = group.speciality_id;
+            ViewBag.group_id = group_id;
+            ViewBag.faculty = group.faculty_name;
+            ViewBag.speciality_name = group.speciality_name;
+            ViewBag.speciality_number = group.speciality_number;
+            ViewBag.coors = group.coors;
+            ViewBag.group_number = group.group_number;
+            IEnumerable<Subgroup> subgroups = UnitOfWork.Subgroups.GetAll("where \"Код_группы\"=" + group_id);
+            return View(subgroups);
+        }
+        public ActionResult AddSubgroup(int group_id)
+        {
+            Group group = UnitOfWork.Groups.Get(group_id);
+            Subgroup subgroup = new Subgroup
+            {
+                speciality_number = group.speciality_number,
+                faculty_name = group.faculty_name,
+                speciality_name = group.speciality_name,
+                group_id = group.id,
+                group_number = group.group_number,
+                coors = group.coors
+            };
+            return View(subgroup);
+        }
+        [HttpPost]
+        public ActionResult AddSubgroup(Subgroup subgroup)
+        {
+            try
+            {
+                UnitOfWork.Subgroups.Create(subgroup);
+                return RedirectToAction("Subgroups", new { group_id = subgroup.group_id });
+            }
+            catch
+            {
+                ModelState.AddModelError("subgroup_number", "ошибка добавления, возможно такая группа уже есть?");
+                return View(subgroup);
+            }
+
+        }
+        public ActionResult DeleteSubgroup(int id)
+        {
+            Subgroup subgroup = UnitOfWork.Subgroups.Get(id);
+            return View(subgroup);
+        }
+        [HttpPost]
+        public ActionResult DeleteSubgroup(Subgroup subgroup)
+        {
+            try
+            {
+                UnitOfWork.Subgroups.Delete(subgroup.id);
+                return RedirectToAction("Subgroups", new { group_id = subgroup.group_id });
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("subgroup_number", "ошибка удаления, данная подгруппа не пуста");
+                return View(subgroup);
+            }
+        }
+        #endregion
     }
 }
