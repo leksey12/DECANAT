@@ -1,0 +1,52 @@
+﻿@model List<DECANAT.ModelData.Speciality>
+@{
+    ViewBag.Title = "Specialitis";
+}
+<br />
+<h3>Специальности на факультете @ViewBag.faculty</h3>
+<h4>Специальностей (@Model.Count):</h4>
+<body>
+    <table id="main-table">
+        <thead>
+            <tr>
+                <th>Специальность</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td>@Model[i].speciality_name (@Model[i].speciality_number)</td>
+                        <td class="clicable" onclick="this.getElementsByTagName('a')[0].click()">
+                            @Html.ActionLink("Подробнее", "Disciplines", new { speciality_id=Model[i].id })
+                        </td>
+                        <td class="clicable" onclick="this.getElementsByTagName('a')[0].click()">
+                            @Html.ActionLink("Группы(" + Model[i].group_count + ")", "Groups", new { speciality_id = Model[i].id })
+                        </td>
+                        <td class="clicable" onclick="this.getElementsByTagName('a')[0].click()">
+                            @Html.ActionLink("Редактировать", "EditSpeciality", new { faculty_id = Model[i].faculty_code, id = Model[i].id })
+                        </td>
+                        <td class="clicable" onclick="this.getElementsByTagName('a')[0].click()">
+                            @Html.ActionLink("Удалить", "DeleteSpeciality", new { faculty_id = Model[i].faculty_code, id = Model[i].id })
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div>
+        <button class="clicable btn btn-default" onclick="this.getElementsByTagName('a')[0].click()">@Html.ActionLink("Добавить", "AddSpeciality", new { faculty_id = ViewBag.faculty_id })</button>
+        <br/>
+        @Html.ActionLink("Назад", "Facultes")
+    </div>
+    <script type="text/javascript">
+        document.onload=new function () {
+            $('#main-table').DataTable(russian_lang);
+        };
+    </script>
+</body>

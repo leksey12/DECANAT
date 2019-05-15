@@ -98,5 +98,70 @@ namespace DECANAT.Controllers
             }
         }
         #endregion
+        #region SPECIALITIS
+        public ActionResult Specialitis(int faculty_id)
+        {
+            ViewBag.faculty_id = faculty_id;
+            ViewBag.faculty = UnitOfWork.Faculties.Get(faculty_id).Name;
+            return View(UnitOfWork.Specialitys.GetAll("where \"Код_факультета\"=" + faculty_id));
+        }
+        public ActionResult AddSpeciality(int faculty_id)
+        {
+            Faculty faculty = UnitOfWork.Faculties.Get(faculty_id);
+            Speciality speciality = new Speciality { faculty_code = faculty_id, faculty_name = faculty.Name };
+            return View(speciality);
+        }
+        [HttpPost]
+        public ActionResult AddSpeciality(Speciality speciality)
+        {
+            try
+            {
+                UnitOfWork.Specialitys.Create(speciality);
+                return RedirectToAction("Specialitis", new { faculty_id = speciality.faculty_code });
+            }
+            catch
+            {
+                ModelState.AddModelError("speciality_name", "ошибка добавления, возможно такая специальность уже есть?");
+                return View(speciality);
+            }
+
+        }
+        public ActionResult EditSpeciality(int id)
+        {
+            NewSpeciality speciality = UnitOfWork.Specialitys.Get(id);
+            speciality.new_speciality_number = speciality.speciality_number;
+            speciality.new_speciality_name = speciality.speciality_name;
+            return View(speciality);
+        }
+        [HttpPost]
+        public ActionResult EditSpeciality(NewSpeciality speciality)
+        {
+            try
+            {
+                UnitOfWork.Specialitys.Update(speciality);
+                return RedirectToAction("Specialitis", new { faculty_id = speciality.faculty_code });
+            }
+            catch { return View(speciality); }
+        }
+        public ActionResult DeleteSpeciality(int id)
+        {
+            Speciality speciality = UnitOfWork.Specialitys.Get(id);
+            return View(speciality);
+        }
+        [HttpPost]
+        public ActionResult DeleteSpeciality(Speciality speciality)
+        {
+            try
+            {
+                UnitOfWork.Specialitys.Delete(speciality.id);
+                return RedirectToAction("Specialitis", new { faculty_id = speciality.faculty_code });
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("speciality_name", "Невозможно удалить эту специальность, так как она не пустая");
+                return View(speciality);
+            }
+        }
+        #endregion
     }
 }

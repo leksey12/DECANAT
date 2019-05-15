@@ -16,5 +16,14 @@ namespace DECANAT.Repozitory
                 return faculties;
             }
         }
+        private static SpecialityRepozitory specialitys;
+        public static SpecialityRepozitory Specialitys
+        {
+            get
+            {
+                if (specialitys == null) specialitys = new SpecialityRepozitory();
+                return specialitys;
+            }
+        }
     }
 }
