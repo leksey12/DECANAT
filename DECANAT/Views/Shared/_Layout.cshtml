@@ -7,6 +7,48 @@
     <title>@ViewBag.Title – приложение ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/jquery.dataTables.min.js")
+    <link href="@Url.Content("~/Content/dropdownMenu.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        window.russian_lang =
+            {
+                language:
+                {
+                    "processing": "Подождите...",
+                    "search": "Поиск:",
+                    "lengthMenu": "Показать _MENU_ записей",
+                    "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+                    "infoEmpty": "Записи с 0 до 0 из 0 записей",
+                    "infoFiltered": "(отфильтровано из _MAX_ записей)",
+                    "infoPostFix": "",
+                    "loadingRecords": "Загрузка записей...",
+                    "zeroRecords": "Записи отсутствуют.",
+                    "emptyTable": "В таблице отсутствуют данные",
+                    "paginate":
+                    {
+                        "first": "Первая",
+                        "previous": "Предыдущая",
+                        "next": "Следующая",
+                        "last": "Последняя"
+                    },
+                    "aria":
+                    {
+                        "sortAscending": ": активировать для сортировки столбца по возрастанию",
+                        "sortDescending": ": активировать для сортировки столбца по убыванию"
+                    }
+                }
+            }
+    </script>
+    <link rel="stylesheet" href=@Url.Content("~/Content/jquery.dataTables.min.css")>
+    <style>
+        footer
+        {
+            position:fixed;
+            top:91%;
+            left:87%;
+        }
+    </style>
 
 </head>
 <body>
@@ -18,7 +60,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("МИФИ Деканат", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Деканат МИФИ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -33,6 +75,14 @@
                         <a href="#">Администратор</a>
                         <ul class="dropdown-menu nav navbar-nav">
                             <li>@Html.ActionLink("Факультеты", "Facultes", "Admin")</li>
+                            <li>@Html.ActionLink("Преподаватели", "Teachers", "Admin")</li>
+                            <li>@Html.ActionLink("Права доступа", "Users", "Admin")</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Деканат</a>
+                        <ul class="dropdown-menu nav navbar-nav">
+                            <li>@Html.ActionLink("Факультеты", "Facultes", "Dekan")</li>
                         </ul>
                     </li>
                     <li>
@@ -41,9 +91,6 @@
                             <li>@Html.ActionLink("Поиск", "Index", "Student")</li>
                         </ul>
                     </li>
-                    @*<li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-        <li>@Html.ActionLink("О программе", "About", "Home")</li>
-        <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -51,8 +98,9 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        
         <footer>
+            <hr />
             <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
         </footer>
     </div>

@@ -1,0 +1,49 @@
+﻿
+ody {
+    font: 14px 'Verdana';
+
+}
+ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+ul:after {
+    display: block;
+    content: ' ';
+    clear: both;
+    float: none;
+}
+
+
+.navbar-inverse{
+
+}
+
+ul.nav > li {
+
+    float: left;
+    position: relative;
+    display: block;
+    color: black;
+    background-color: black;
+}
+
+
+ul.dropdown-menu {
+    display:none;
+    position: absolute;
+    top: 37px;
+    left: 0;
+    background-color: black;
+}
+
+ul.nav > li:hover > ul.dropdown-menu{
+    display:block;
+}
+
+.dataTables_wrapper
+{
+    margin-top: 20px;
+}
