@@ -2,13 +2,16 @@
     padding-top: 50px;
     padding-bottom: 20px;
     background-image: url(../images/background.jpg);
-    background-repeat:repeat;
+    background-repeat: repeat;
+    background-size: cover;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    background-color: #52ea00;
+    margin-top: 50px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
