@@ -86,7 +86,7 @@ namespace DECANAT.Controllers
                 case SignInStatus.Success:
                     if (UserManager.IsInRole(user.Id, "admin")) return RedirectToAction("Facultes", "Admin");
                     if (UserManager.IsInRole(user.Id, "decanat")) return RedirectToAction("Facultes", "Dekan");
-                    else return RedirectToAction("Index", "Teacher");
+                    else return RedirectToAction("Index", "Home");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -193,8 +193,8 @@ namespace DECANAT.Controllers
                     }
                     switch (model.Username)
                     {
-                        case "ADMIN": return RedirectToAction("Index", "Home");
-                        default: return RedirectToAction("Index", "Teacher");
+                        case "ADMIN": return RedirectToAction("Facultes", "Admin");
+                        default: return RedirectToAction("Index", "Home");
                     }
                 }
                 AddErrors(result);
@@ -471,7 +471,7 @@ namespace DECANAT.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Teacher");
+            return RedirectToAction("Index", "Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
