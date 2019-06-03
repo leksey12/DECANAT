@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using DECANAT.Models;
+using DECANAT.ModelData;
 using DECANAT.Repozitory;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -192,7 +193,7 @@ namespace DECANAT.Controllers
                     }
                     switch (model.Username)
                     {
-                        case "ADMIN": return RedirectToAction("Index", "Main");
+                        case "ADMIN": return RedirectToAction("Index", "Home");
                         default: return RedirectToAction("Index", "Teacher");
                     }
                 }
@@ -433,7 +434,7 @@ namespace DECANAT.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Main");
+            return RedirectToAction("Index", "Home");
         }
 
         //
