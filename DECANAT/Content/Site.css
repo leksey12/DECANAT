@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-image: url(../images/background.jpg);
+    background-color: white;
     background-repeat: repeat;
     background-size: cover;
 }
@@ -10,8 +10,10 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    background-color: #52ea00;
     margin-top: 50px;
+    box-shadow: inset 0px 0px 20px #ddd;
+    text-shadow: 0 0 20px #ddd;
+    color: #000;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -58,17 +60,16 @@ th {
 {
     color:blue;
 }
-.red
-{
-    background-color:#FFA07A;
+.red {
+    background-color: #FFA07A;
 }
 .orange
 {
-    background-color:#FFD700;
+    background-color:yellow;
 }
 .green
 {
-    background-color:#9ACD32;
+    background-color:lime;
 }
 
 .page_menu>div {
@@ -81,7 +82,7 @@ th {
 }
 .page_menu::before {
   content: '▶ ';
-  color: green;
+  color: lime;
 }
 .page_menu_open::before {
   content: '▼ ';

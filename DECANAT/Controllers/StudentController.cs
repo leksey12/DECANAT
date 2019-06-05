@@ -37,5 +37,19 @@ namespace DECANAT.Controllers
             }
             return View(list);
         }
+        public ActionResult DisciplineStuding(int student_id)
+        {
+            Student student = UnitOfWork.Students.Get(student_id);
+            ViewBag.faculty_name = student.faculty_name;
+            ViewBag.speciality_name = student.speciality_name;
+            ViewBag.speciality_number = student.speciality_number;
+            ViewBag.speciality_id = student.speciality_id;
+            ViewBag.subgroup_id = student.subgroup_id;
+            ViewBag.coors = student.coors;
+            ViewBag.group_number = student.group_number;
+            ViewBag.subgroup_number = student.subgroup_number;
+            ViewBag.student_name = student.FIO;
+            return View(UnitOfWork.Studing.GetDisciplines("where \"Код_студента\"=" + student_id));
+        }
     }
 }

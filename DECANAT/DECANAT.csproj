@@ -346,6 +346,8 @@
     <Content Include="Views\Dekan\Specialitis.cshtml" />
     <Content Include="Views\Dekan\Studing.cshtml" />
     <Content Include="Views\Dekan\Subgroups.cshtml" />
+    <Content Include="Views\Student\DisciplineStuding.cshtml" />
+    <Content Include="Views\Teacher\DisciplineStuding.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

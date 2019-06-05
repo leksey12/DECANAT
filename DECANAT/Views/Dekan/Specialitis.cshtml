@@ -1,16 +1,15 @@
-﻿@model List< DECANAT.ModelData.Speciality>
+﻿@model List<DECANAT.ModelData.Speciality>
 @{
     ViewBag.Title = "Specialitis";
 }
 <br />
-<h3>Специальности @ViewBag.faculty_name</h3>
-<h4>Специальностей (@Model.Count):</h4>
+<h3>Специальности @ViewBag.faculty_name (@Model.Count):</h3>
 <body>
     <table id="main-table">
         <thead>
             <tr>
                 <th>Специальность</th>
-                <th></th>
+                <th>Группы</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +19,7 @@
                     <tr>
                         <td>@Model[i].speciality_name (@Model[i].speciality_number)</td>
                         <td class="clicable" onclick="this.getElementsByTagName('a')[0].click()">
-                            @Html.ActionLink("Подгруппы", "Subgroups", new { speciality_id = Model[i].id })
+                            @Html.ActionLink("Подробнее", "Subgroups", new { speciality_id = Model[i].id })
                         </td>
                     </tr>
                 }
@@ -31,7 +30,7 @@
         @Html.ActionLink("Назад", "Facultes")
     </div>
     <script type="text/javascript">
-        document.onload=new function () {
+        document.onload = new function () {
             $('#main-table').DataTable(russian_lang);
         };
     </script>

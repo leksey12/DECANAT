@@ -10,7 +10,7 @@
                 <th>Преподаватель</th>
                 <th>Специальность</th>
                 <th>Дисциплина</th>
-                <th>Курс-группа-подгруппа</th>
+                <th>Курс-группа</th>
                 <th></th>
             </tr>
         </thead>
@@ -23,17 +23,19 @@
                         <td>@Model[i].speciality_name (@Model[i].speciality_number)</td>
                         <td>@Model[i].discipline_name</td>
                         <td>@Model[i].coors-@Model[i].group_number-@Model[i].subgroup_number</td>
-                        <td class="clicable" onclick="this.firstChild.click()">@Html.ActionLink("Подробнее", "Labs", 
-                        new { discipline_id = Model[i].discipline_id,subgroup_id = Model[i].subgroup_id })</td>
-                    </tr>
-                }
+                        <td class="clicable" onclick="this.firstChild.click()">
+                            @Html.ActionLink("Подробнее", "Labs",
+new { discipline_id = Model[i].discipline_id,subgroup_id = Model[i].subgroup_id })
+                    </td>
+                </tr>
+            }
             }
         </tbody>
     </table>
     <script type="text/javascript">
-        document.onload = new function () 
-        {
-            $('#main-table').DataTable(russian_lang);
-        }
-    </script>
+            document.onload = new function ()
+            {
+                $('#main-table').DataTable(russian_lang);
+            }
+        </script>
 </body>
