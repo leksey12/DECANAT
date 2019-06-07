@@ -33,9 +33,7 @@ namespace DECANAT.Repozitory
                             discipline_name = reader["Наименование_дисциплины"].ToString(),
                             discipline_id = Convert.ToInt32(reader["Код_дисциплины"].ToString()),
                             coors = Convert.ToInt32(reader["Курс"].ToString()),
-                            group_number = Convert.ToInt32(reader["Номер_группы"].ToString()),
-                            subgroup_number = Convert.ToInt32(reader["Номер_подгруппы"].ToString()),
-                            subgroup_id = Convert.ToInt32(reader["Код_подгруппы"].ToString()),
+                            group_number = reader["Наименование_группы"].ToString(),
                             faculty_name = reader["Название_факультета"].ToString(),
                             speciality_number = Convert.ToInt32(reader["Номер_специальности"].ToString()),
                             group_id = Convert.ToInt32(reader["Код_группы"].ToString()),
@@ -73,9 +71,7 @@ namespace DECANAT.Repozitory
                             discipline_name = reader["Наименование_дисциплины"].ToString(),
                             discipline_id = Convert.ToInt32(reader["Код_дисциплины"].ToString()),
                             coors = Convert.ToInt32(reader["Курс"].ToString()),
-                            group_number = Convert.ToInt32(reader["Номер_группы"].ToString()),
-                            subgroup_number = Convert.ToInt32(reader["Номер_подгруппы"].ToString()),
-                            subgroup_id = Convert.ToInt32(reader["Код_подгруппы"].ToString()),
+                            group_number = reader["Наименование_группы"].ToString(),
                             faculty_name = reader["Название_факультета"].ToString(),
                             speciality_number = Convert.ToInt32(reader["Номер_специальности"].ToString()),
                             group_id = Convert.ToInt32(reader["Код_группы"].ToString()),
@@ -93,12 +89,12 @@ namespace DECANAT.Repozitory
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "ADD_WORK";
-                OracleParameter subgroup_id_param = new OracleParameter()
+                OracleParameter group_id_param = new OracleParameter()
                 {
-                    ParameterName = "subgroup_kode",
+                    ParameterName = "group_code",
                     Direction = ParameterDirection.Input,
                     OracleDbType = OracleDbType.Varchar2,
-                    Value = item.subgroup_id
+                    Value = item.group_id
                 };
                 OracleParameter teacher_id_param = new OracleParameter()
                 {
@@ -114,7 +110,7 @@ namespace DECANAT.Repozitory
                     OracleDbType = OracleDbType.Varchar2,
                     Value = item.discipline_id
                 };
-                command.Parameters.Add(subgroup_id_param);
+                command.Parameters.Add(group_id_param);
                 command.Parameters.Add(teacher_id_param);
                 command.Parameters.Add(discipline_id_param);
                 command.ExecuteNonQuery();

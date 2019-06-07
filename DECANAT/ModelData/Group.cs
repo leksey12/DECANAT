@@ -60,12 +60,13 @@ namespace DECANAT.ModelData
         /// Номер группы
         /// </summary>
         [Required]
-        [Display(Name = "Номер группы")]
-        public int group_number { get; set; }
+        [Display(Name = "Наименование группы")]
+        public string group_number { get; set; }
 
         /// <summary>
-        /// Подгруппа
+        /// студенты
         /// </summary>
-        public int subgroups_count { get; set; }
+        public int peoples_count { get; set; }
+
     }
 }

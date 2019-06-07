@@ -9,12 +9,12 @@ namespace DECANAT.ModelData
     /// <summary>
     /// Модель студентов
     /// </summary>
-    public class Student : Subgroup
+    public class Student : Group
     {
         /// <summary>
-        /// Идентификатор подгруппы
+        /// Идентификатор группы
         /// </summary>
-        public int subgroup_id { get; set; }
+        public int group_id { get; set; }
 
         /// <summary>
         /// Фамилия Имя Отчество

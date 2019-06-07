@@ -3,7 +3,6 @@ using DECANAT.Repozitory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace DECANAT.Controllers
@@ -13,8 +12,11 @@ namespace DECANAT.Controllers
         // GET: Student
         public ActionResult Index(string name)
         {
-            if (!String.IsNullOrWhiteSpace(name))
+
+           if (!String.IsNullOrEmpty(name))
+            //if (ViewBag.querry == ""|| ViewBag.querry.length==5)
             {
+                
                 ViewBag.querry = name;
                 return View(UnitOfWork.Students.GetAll("where \"ФИО\" LIKE '%" + name + "%'"));
             }
@@ -33,7 +35,6 @@ namespace DECANAT.Controllers
                 ViewBag.FIO = list.ElementAt(0).student_name;
                 ViewBag.coors = list.ElementAt(0).coors;
                 ViewBag.group_number = list.ElementAt(0).group_number;
-                ViewBag.subgroop_number = list.ElementAt(0).subgroop_number;
             }
             return View(list);
         }
@@ -44,10 +45,8 @@ namespace DECANAT.Controllers
             ViewBag.speciality_name = student.speciality_name;
             ViewBag.speciality_number = student.speciality_number;
             ViewBag.speciality_id = student.speciality_id;
-            ViewBag.subgroup_id = student.subgroup_id;
             ViewBag.coors = student.coors;
             ViewBag.group_number = student.group_number;
-            ViewBag.subgroup_number = student.subgroup_number;
             ViewBag.student_name = student.FIO;
             return View(UnitOfWork.Studing.GetDisciplines("where \"Код_студента\"=" + student_id));
         }

@@ -299,96 +299,33 @@ namespace DECANAT.Controllers
             }
         }
         #endregion
-        #region SUBGROUPS
-        public ActionResult Subgroups(int group_id)
+       
+        #region STUDENTS
+        public ActionResult Students(int group_id)
         {
             Group group = UnitOfWork.Groups.Get(group_id);
-            ViewBag.speciality_id = group.speciality_id;
+            
             ViewBag.group_id = group_id;
             ViewBag.faculty = group.faculty_name;
             ViewBag.speciality_name = group.speciality_name;
             ViewBag.speciality_number = group.speciality_number;
             ViewBag.coors = group.coors;
             ViewBag.group_number = group.group_number;
-            IEnumerable<Subgroup> subgroups = UnitOfWork.Subgroups.GetAll("where \"Код_группы\"=" + group_id);
-            return View(subgroups);
+           
+            IEnumerable<Group> groups = UnitOfWork.Students.GetAll("where \"Код_группы\"=" + group_id);
+            return View(groups);
         }
-        public ActionResult AddSubgroup(int group_id)
+        public ActionResult AddStudent(int group_id)
         {
             Group group = UnitOfWork.Groups.Get(group_id);
-            Subgroup subgroup = new Subgroup
+            Student student = new Student
             {
                 speciality_number = group.speciality_number,
                 faculty_name = group.faculty_name,
                 speciality_name = group.speciality_name,
-                group_id = group.id,
                 group_number = group.group_number,
-                coors = group.coors
-            };
-            return View(subgroup);
-        }
-        [HttpPost]
-        public ActionResult AddSubgroup(Subgroup subgroup)
-        {
-            try
-            {
-                UnitOfWork.Subgroups.Create(subgroup);
-                return RedirectToAction("Subgroups", new { group_id = subgroup.group_id });
-            }
-            catch
-            {
-                ModelState.AddModelError("subgroup_number", "ошибка добавления, возможно такая группа уже есть?");
-                return View(subgroup);
-            }
-
-        }
-        public ActionResult DeleteSubgroup(int id)
-        {
-            Subgroup subgroup = UnitOfWork.Subgroups.Get(id);
-            return View(subgroup);
-        }
-        [HttpPost]
-        public ActionResult DeleteSubgroup(Subgroup subgroup)
-        {
-            try
-            {
-                UnitOfWork.Subgroups.Delete(subgroup.id);
-                return RedirectToAction("Subgroups", new { group_id = subgroup.group_id });
-            }
-            catch (Exception)
-            {
-                ModelState.AddModelError("subgroup_number", "ошибка удаления, данная подгруппа не пуста");
-                return View(subgroup);
-            }
-        }
-        #endregion
-        #region STUDENTS
-        public ActionResult Students(int subgroup_id)
-        {
-            Subgroup subgroup = UnitOfWork.Subgroups.Get(subgroup_id);
-            ViewBag.group_id = subgroup.group_id;
-            ViewBag.subgroup_id = subgroup_id;
-            ViewBag.faculty = subgroup.faculty_name;
-            ViewBag.speciality_name = subgroup.speciality_name;
-            ViewBag.speciality_number = subgroup.speciality_number;
-            ViewBag.coors = subgroup.coors;
-            ViewBag.group_number = subgroup.group_number;
-            ViewBag.subgroup_number = subgroup.subgroup_number;
-            IEnumerable<Subgroup> subgroups = UnitOfWork.Students.GetAll("where \"Код_подгруппы\"=" + subgroup_id);
-            return View(subgroups);
-        }
-        public ActionResult AddStudent(int subgroup_id)
-        {
-            Subgroup subgroup = UnitOfWork.Subgroups.Get(subgroup_id);
-            Student student = new Student
-            {
-                speciality_number = subgroup.speciality_number,
-                faculty_name = subgroup.faculty_name,
-                speciality_name = subgroup.speciality_name,
-                group_number = subgroup.group_number,
-                subgroup_number = subgroup.subgroup_number,
-                coors = subgroup.coors,
-                subgroup_id = subgroup_id
+                coors = group.coors,
+                group_id = group_id
             };
             return View(student);
         }
@@ -398,7 +335,7 @@ namespace DECANAT.Controllers
             try
             {
                 UnitOfWork.Students.Create(student);
-                return RedirectToAction("Students", new { subgroup_id = student.subgroup_id });
+                return RedirectToAction("Students", new { group_id = student.group_id });
             }
             catch
             {
@@ -418,7 +355,7 @@ namespace DECANAT.Controllers
             try
             {
                 UnitOfWork.Students.Update(student);
-                return RedirectToAction("Students", new { subgroup_id = student.subgroup_id });
+                return RedirectToAction("Students", new { group_id = student.group_id });
             }
             catch
             {
@@ -437,7 +374,7 @@ namespace DECANAT.Controllers
             try
             {
                 UnitOfWork.Students.Delete(student.id);
-                return RedirectToAction("Students", new { subgroup_id = student.subgroup_id });
+                return RedirectToAction("Students", new { group_id = student.group_id });
             }
             catch (Exception)
             {
@@ -447,34 +384,31 @@ namespace DECANAT.Controllers
         }
         #endregion
         #region WORKS
-        public ActionResult Works(int subgroup_id)
+        public ActionResult Works(int group_id)
         {
-            Subgroup subgroup = UnitOfWork.Subgroups.Get(subgroup_id);
-            ViewBag.speciality_name = subgroup.speciality_name;
-            ViewBag.speciality_number = subgroup.speciality_number;
-            ViewBag.coors = subgroup.coors;
-            ViewBag.group_number = subgroup.group_number;
-            ViewBag.subgroup_number = subgroup.subgroup_number;
-            ViewBag.subgroup_id = subgroup.id;
-            ViewBag.group_id = subgroup.group_id;
-            return View(UnitOfWork.Works.GetAll("where \"Код_подгруппы\"=" + subgroup_id));
+            Group group = UnitOfWork.Groups.Get(group_id);
+            ViewBag.speciality_name = group.speciality_name;
+            ViewBag.speciality_number = group.speciality_number;
+            ViewBag.coors = group.coors;
+            ViewBag.group_number = group.group_number;
+            ViewBag.group_id = group.id;
+            return View(UnitOfWork.Works.GetAll("where \"Код_группы\"=" + group_id));
         }
-        public ActionResult AddWork(int subgroup_id)
+        public ActionResult AddWork(int group_id)
         {
-            Subgroup subgroup = UnitOfWork.Subgroups.Get(subgroup_id);
+            Group group = UnitOfWork.Groups.Get(group_id);
             NewWork workload = new NewWork();
             workload.work = new Work
             {
-                faculty_name = subgroup.faculty_name,
-                speciality_name = subgroup.speciality_name,
-                speciality_number = subgroup.speciality_number,
-                subgroup_id = subgroup.id,
-                group_number = subgroup.group_number,
-                subgroup_number = subgroup.subgroup_number,
-                coors = subgroup.coors
+                faculty_name = group.faculty_name,
+                speciality_name = group.speciality_name,
+                speciality_number = group.speciality_number,
+                group_id = group.id,
+                group_number = group.group_number,
+                coors = group.coors
             };
             workload.teachers = UnitOfWork.Works.GetTeachers();
-            workload.disciplines = UnitOfWork.Works.GetDisciplinesFromSpecialityId(subgroup.speciality_id);
+            workload.disciplines = UnitOfWork.Works.GetDisciplinesFromSpecialityId(group.speciality_id);
             return View(workload);
         }
         [HttpPost]
@@ -483,7 +417,7 @@ namespace DECANAT.Controllers
             try
             {
                 UnitOfWork.Works.Create(work);
-                return RedirectToAction("Works", new { subgroup_id = work.subgroup_id });
+                return RedirectToAction("Works", new { group_id = work.group_id });
             }
             catch (Exception e)
             {
@@ -507,7 +441,7 @@ namespace DECANAT.Controllers
             try
             {
                 UnitOfWork.Works.Delete(work.id);
-                return RedirectToAction("Works", new { subgroup_id = work.subgroup_id });
+                return RedirectToAction("Works", new { group_id = work.group_id });
             }
             catch (Exception e)
             {

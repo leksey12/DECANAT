@@ -35,9 +35,8 @@ namespace DECANAT.Repozitory
                             teacher_name = reader["Преподаватель"].ToString(),
                             student_name = reader["Студент"].ToString(),
                             coors = Convert.ToInt32(reader["Курс"].ToString()),
-                            subgroop_id = Convert.ToInt32(reader["Код_подгруппы"].ToString()),
-                            subgroop_number = Convert.ToInt32(reader["Номер_подгруппы"].ToString()),
-                            group_number = Convert.ToInt32(reader["Номер_группы"].ToString()),
+                            group_id = Convert.ToInt32(reader["Код_группы"].ToString()),
+                            group_number = reader["Наименование_группы"].ToString(),
                             lab_name = reader["Название_лабораторной"].ToString(),
                             lab_status = reader["Статус_сдачи"].ToString()
                         });
@@ -76,9 +75,8 @@ namespace DECANAT.Repozitory
                         teacher_name = reader["Преподаватель"].ToString(),
                         student_name = reader["Студент"].ToString(),
                         coors = Convert.ToInt32(reader["Курс"].ToString()),
-                        subgroop_id = Convert.ToInt32(reader["Код_подгруппы"].ToString()),
-                        subgroop_number = Convert.ToInt32(reader["Номер_подгруппы"].ToString()),
-                        group_number = Convert.ToInt32(reader["Номер_группы"].ToString()),
+                       group_id = Convert.ToInt32(reader["Код_группы"].ToString()),
+                        group_number = reader["Наименование_группы"].ToString(),
                         lab_name = reader["Название_лабораторной"].ToString(),
                         lab_status = reader["Статус_сдачи"].ToString()
                     };

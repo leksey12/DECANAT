@@ -4,7 +4,7 @@
 }
 <h3>Факультет: @ViewBag.faculty</h3>
 <h4>Специальность: @ViewBag.speciality_name (@ViewBag.speciality_number)</h4>
-<h4>Курс-группа-подгруппа: @ViewBag.coors-@ViewBag.group_number</h4>
+<h4>Группа-курс: @ViewBag.group_number-@ViewBag.coors</h4>
 <body>
     <table id="main-table">
         <thead>
@@ -31,11 +31,11 @@
     </table>
     <div>
         <button class="clicable btn btn-default" onclick="this.getElementsByTagName('a')[0].click()">
-            @Html.ActionLink("Добавить", "AddWork", new { subgroup_id = ViewBag.subgroup_id })
+            @Html.ActionLink("Добавить", "AddWork", new { group_id = ViewBag.group_id })
         </button>
     </div>
     <br />
-    @Html.ActionLink("Назад", "Subgroups", new { group_id = ViewBag.group_id })
+    @Html.ActionLink("Назад", "Groups", new { group_id = ViewBag.group_id })
     <script type="text/javascript">
             document.onload = new function () {
                 $('#main-table').DataTable(russian_lang);

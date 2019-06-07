@@ -17,8 +17,7 @@ namespace DECANAT.ModelData
         public string discipline_name { get; set; }
         public int coors { get; set; }
         public int year { get; set; }
-        public int group_number { get; set; }
-        public int subgroop_number { get; set; }
-        public int subgroop_code { get; set; }
+        public string group_number { get; set; }
+        public int group_code { get; set; }
     }
 }

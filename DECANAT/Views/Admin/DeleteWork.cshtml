@@ -7,11 +7,11 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.subgroup_id)
+    @Html.HiddenFor(model => model.group_id)
     <div class="form-horizontal">
         <h4>Факультет: @Model.faculty_name</h4>
         <h4>Специальность: @Model.speciality_name (@Model.speciality_number)</h4>
-        <h4>Курс-группа-подгруппа: @Model.coors-@Model.group_number-@Model.subgroup_number</h4>
+        <h4>Курс-группа: @Model.coors-@Model.group_number</h4>
         <h4>Преподаватель: @Model.teacher_name</h4>
         <h4>Дисциплина: @Model.discipline_name</h4>
         @Html.ValidationSummary()
@@ -22,7 +22,7 @@
 }
 
 <div>
-    @Html.ActionLink("Назад", "Works", new { subgroup_id = Model.subgroup_id })
+    @Html.ActionLink("Назад", "Works", new { group_id = Model.group_id })
 </div>
 
 @section Scripts {

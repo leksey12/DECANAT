@@ -33,9 +33,7 @@ namespace DECANAT.Repozitory
                             year = Convert.ToInt32(reader["Год_поступления"].ToString()),
                             coors = Convert.ToInt32(reader["Курс"].ToString()),
                             group_id = Convert.ToInt32(reader["Код_группы"].ToString()),
-                            subgroup_id = Convert.ToInt32(reader["Код_подгруппы"].ToString()),
-                            subgroup_number = Convert.ToInt32(reader["Номер_подгруппы"].ToString()),
-                            group_number = Convert.ToInt32(reader["Номер_группы"].ToString()),
+                            group_number = reader["Наименование_группы"].ToString(),
                             id = Convert.ToInt32(reader["Код_студента"].ToString())
                         });
                     }
@@ -72,10 +70,8 @@ namespace DECANAT.Repozitory
                             year = Convert.ToInt32(reader["Год_поступления"].ToString()),
                             coors = Convert.ToInt32(reader["Курс"].ToString()),
                             group_id = Convert.ToInt32(reader["Код_группы"].ToString()),
-                            subgroup_id = Convert.ToInt32(reader["Код_подгруппы"].ToString()),
-                            subgroup_number = Convert.ToInt32(reader["Номер_подгруппы"].ToString()),
-                            group_number = Convert.ToInt32(reader["Номер_группы"].ToString()),
-                            id = Convert.ToInt32(reader["Код_студента"].ToString())
+                        group_number = reader["Наименование_группы"].ToString(),
+                        id = Convert.ToInt32(reader["Код_студента"].ToString())
                         };
                     return student;
                 }
@@ -89,12 +85,12 @@ namespace DECANAT.Repozitory
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "ADD_STUDENT";
-                OracleParameter subgroup_code = new OracleParameter()
+                OracleParameter group_code = new OracleParameter()
                 {
-                    ParameterName = "subgroup_code",
+                    ParameterName = "group_code",
                     Direction = ParameterDirection.Input,
                     OracleDbType = OracleDbType.Varchar2,
-                    Value = item.subgroup_id
+                    Value = item.group_id
                 };
                 OracleParameter student_name = new OracleParameter()
                 {
@@ -103,7 +99,7 @@ namespace DECANAT.Repozitory
                     OracleDbType = OracleDbType.Varchar2,
                     Value = item.FIO
                 };
-                command.Parameters.Add(subgroup_code);
+                command.Parameters.Add(group_code);
                 command.Parameters.Add(student_name);
                 command.ExecuteNonQuery();
             }
@@ -116,7 +112,7 @@ namespace DECANAT.Repozitory
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "EDIT_STUDENT";
-                OracleParameter subgroup_code = new OracleParameter()
+                OracleParameter group_code = new OracleParameter()
                 {
                     ParameterName = "student_code",
                     Direction = ParameterDirection.Input,
@@ -130,7 +126,7 @@ namespace DECANAT.Repozitory
                     OracleDbType = OracleDbType.Varchar2,
                     Value = item.new_FIO
                 };
-                command.Parameters.Add(subgroup_code);
+                command.Parameters.Add(group_code);
                 command.Parameters.Add(new_student_name);
                 command.ExecuteNonQuery();
             }

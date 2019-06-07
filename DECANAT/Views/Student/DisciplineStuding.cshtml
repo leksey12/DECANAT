@@ -4,7 +4,7 @@
     }
     <h3>Факультет: @ViewBag.faculty_name</h3>
     <h4>Специальность: @ViewBag.speciality_name (@ViewBag.speciality_number)</h4>
-    <h4>Курс-Группа: @ViewBag.coors-@ViewBag.group_number</h4>
+    <h4>Группа-Курс: @ViewBag.group_number-@ViewBag.coors</h4>
     <h4>Студент: @ViewBag.student_name</h4>
     <body>
         <table id="main-table">
@@ -32,7 +32,7 @@
                 }
             </tbody>
         </table>
-        @Html.ActionLink("Назад", "Student", new { speciality_id = ViewBag.speciality_id, subgroup_id = ViewBag.subgroup_id })
+        @Html.ActionLink("Назад", "Student", new { speciality_id = ViewBag.speciality_id, group_id = ViewBag.group_id })
         <script type="text/javascript">document.onload = new function () {
             $('#main-table').DataTable(russian_lang);
         };</script>

@@ -65,19 +65,16 @@ namespace DECANAT.ModelData
         public int coors { get; set; }
 
         /// <summary>
-        /// Идентификатор подгруппы
+        /// Идентификатор группы
         /// </summary>
-        public int subgroop_id { get; set; }
+        public int group_id { get; set; }
 
-        /// <summary>
-        ///  Номер подгруппы
-        /// </summary>
-        public int subgroop_number { get; set; }
+        
 
         /// <summary>
         /// Номер группы
         /// </summary>
-        public int group_number { get; set; }
+        public string group_number { get; set; }
 
         /// <summary>
         /// Название лаборатной

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace DECANAT.Controllers
 {
+    [Authorize(Roles = "teacher")]
     public class TeacherController : Controller
     {
         // GET: Teacher
@@ -16,15 +17,15 @@ namespace DECANAT.Controllers
         {
             return View(UnitOfWork.Works.GetAll("where \"Код_преподавателя\"='" + User.Identity.GetUserId() + "'"));
         }
-        public ActionResult Labs(int discipline_id, int subgroup_id)
+        public ActionResult Labs(int discipline_id, int group_id)
         {
-            Subgroup subgroup = UnitOfWork.Subgroups.Get(subgroup_id);
+            Group group = UnitOfWork.Groups.Get(group_id);
             Discipline discipline = UnitOfWork.Disciplines.Get(discipline_id);
-            ViewBag.coors = subgroup.coors;
-            ViewBag.group_number = subgroup.group_number;
-            ViewBag.subgroup_number = subgroup.subgroup_number;
+            ViewBag.coors = group.coors;
+            ViewBag.group_number = group.group_number;
+            ViewBag.group_number = group.group_number;
             ViewBag.discipline_name = discipline.discipline_name;
-            IEnumerable<LabProgress> array = UnitOfWork.LabProgress.GetAll("WHERE \"Код_преподавателя\" = '" + User.Identity.GetUserId() + "' AND \"Код_дисциплины\"=" + discipline_id + " and \"Код_подгруппы\"=" + subgroup_id);
+            IEnumerable<LabProgress> array = UnitOfWork.LabProgress.GetAll("WHERE \"Код_преподавателя\" = '" + User.Identity.GetUserId() + "' AND \"Код_дисциплины\"=" + discipline_id + " and \"Код_группы\"=" + group_id);
             Dictionary<string, List<LabProgress>> grouped_students = new Dictionary<string, List<LabProgress>>();
             List<LabProgress> current_list;
             for (int i = 0; i < array.Count(); i++)
@@ -123,7 +124,7 @@ namespace DECANAT.Controllers
         {
             string id = User.Identity.GetUserId();
             UnitOfWork.LabProgress.Update(item);
-            return RedirectToAction("Labs", new { discipline_id = item.discipline_id, subgroup_id = item.subgroop_id });
+            return RedirectToAction("Labs", new { discipline_id = item.discipline_id, group_id = item.group_id });
         }
     }
 }

@@ -10,11 +10,11 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model=>model.work.subgroup_id)
+    @Html.HiddenFor(model=>model.work.group_id)
     <div class="form-horizontal">
         <h4>Факультет: @work.faculty_name</h4>
         <h4>Специальность: @work.speciality_name (@work.speciality_number)</h4>
-        <h4>Курс-группа-подгруппа: @work.coors-@work.group_number-@work.subgroup_number</h4>
+        <h4>Курс-группа: @work.coors-@work.group_number</h4>
         <div class="form-group">
             @Html.LabelFor(model => model.work.teacher_name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -39,7 +39,7 @@
         }
 
         <div>
-            @Html.ActionLink("Назад", "Works", new { subgroup_id = Model.work.subgroup_id })
+            @Html.ActionLink("Назад", "Works", new { group_id = Model.work.group_id })
         </div>
 
         @section Scripts {

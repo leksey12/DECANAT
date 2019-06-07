@@ -1,6 +1,6 @@
-﻿@model List<DECANAT.ModelData.Subgroup>
+﻿@model List<DECANAT.ModelData.Group>
     @{
-        ViewBag.Title = "Subgroups";
+        ViewBag.Title = "Groups";
     }
     <br />
     <h3>Факультет: @ViewBag.faculty</h3>
@@ -10,7 +10,7 @@
         <table id="main-table">
             <thead>
                 <tr>
-                    <th>Курс-Группа</th>
+                    <th>Группа-Курс</th>
                     <th>Успеваемость</th>
                 </tr>
             </thead>
@@ -19,9 +19,9 @@
                     for (int i = 0; i < Model.Count; i++)
                     {
                         <tr>
-                            <td>@Model[i].coors-@Model[i].group_number-@Model[i].subgroup_number</td>
+                            <td>@Model[i].group_number-@Model[i].coors</td>
                             <td class="clicable" onclick="this.getElementsByTagName('a')[0].click()">
-                                @Html.ActionLink("Успеваемость", "Studing", new { subgroup_id = Model[i].id, speciality_id = Model[i].speciality_id })
+                                @Html.ActionLink("Успеваемость", "Studing", new { group_id = Model[i].id, speciality_id = Model[i].speciality_id })
                             </td>
                         </tr>
                     }

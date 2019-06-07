@@ -32,8 +32,8 @@ namespace DECANAT.Repozitory
                             speciality_number = Convert.ToInt32(reader["Номер_специальности"].ToString()),
                             coors = Convert.ToInt32(reader["Курс"].ToString()),
                             year = Convert.ToInt32(reader["Год_поступления"].ToString()),
-                            group_number = Convert.ToInt32(reader["Номер_группы"].ToString()),
-                            subgroups_count = Convert.ToInt32(reader["Подгрупп"].ToString())
+                            group_number = reader["Наименование_группы"].ToString(),
+                            peoples_count = Convert.ToInt32(reader["Студентов"].ToString())
                         });
                     }
                     return groups;
@@ -69,9 +69,10 @@ namespace DECANAT.Repozitory
                             speciality_number = Convert.ToInt32(reader["Номер_специальности"].ToString()),
                             coors = Convert.ToInt32(reader["Курс"].ToString()),
                             year = Convert.ToInt32(reader["Год_поступления"].ToString()),
-                            group_number = Convert.ToInt32(reader["Номер_группы"].ToString()),
-                            subgroups_count = Convert.ToInt32(reader["Подгрупп"].ToString())
-                        };
+                        group_number = reader["Наименование_группы"].ToString(),
+                        peoples_count = Convert.ToInt32(reader["Студентов"].ToString())
+
+                    };
                     return group;
                 }
             }

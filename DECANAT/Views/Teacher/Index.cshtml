@@ -10,8 +10,8 @@
                 <th>Преподаватель</th>
                 <th>Специальность</th>
                 <th>Дисциплина</th>
-                <th>Курс-группа</th>
-                <th></th>
+                <th>Группа-Курс</th>
+                <th>Успеваемость</th>
             </tr>
         </thead>
         <tbody>
@@ -22,10 +22,10 @@
                         <td>@Model[i].teacher_name</td>
                         <td>@Model[i].speciality_name (@Model[i].speciality_number)</td>
                         <td>@Model[i].discipline_name</td>
-                        <td>@Model[i].coors-@Model[i].group_number-@Model[i].subgroup_number</td>
+                        <td>@Model[i].group_number-@Model[i].coors</td>
                         <td class="clicable" onclick="this.firstChild.click()">
                             @Html.ActionLink("Подробнее", "Labs",
-new { discipline_id = Model[i].discipline_id,subgroup_id = Model[i].subgroup_id })
+new { discipline_id = Model[i].discipline_id,group_id = Model[i].group_id })
                     </td>
                 </tr>
             }

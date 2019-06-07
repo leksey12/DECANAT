@@ -25,12 +25,11 @@ namespace DECANAT.Repozitory
                     {
                         studyes.Add(new Study
                         {
-                            student_name=reader["ФИО"].ToString(),
+                            student_name =reader["ФИО"].ToString(),
                             student_id = Convert.ToInt32(reader["Код_студента"].ToString()),
                             speciality_id = Convert.ToInt32(reader["Код_специальности"].ToString()),
-                            subgroup_id = Convert.ToInt32(reader["Код_подгруппы"].ToString()),
-                            group = Convert.ToInt32(reader["Номер_группы"].ToString()),
-                            subgroup = Convert.ToInt32(reader["Номер_подгруппы"].ToString()),
+                            group_id = Convert.ToInt32(reader["Код_группы"].ToString()),
+                            group = reader["Наименование_группы"].ToString(),
                             coors = Convert.ToInt32(reader["Курс"].ToString()),
                             complited = Convert.ToInt32(reader["Сданных"].ToString()),
                             not_complited = Convert.ToInt32(reader["Не_сданных"].ToString()),
@@ -61,9 +60,8 @@ namespace DECANAT.Repozitory
                             student_name = reader["ФИО"].ToString(),
                             student_id = Convert.ToInt32(reader["Код_студента"].ToString()),
                             speciality_id = Convert.ToInt32(reader["Код_специальности"].ToString()),
-                            subgroup_id = Convert.ToInt32(reader["Код_подгруппы"].ToString()),
-                            group = Convert.ToInt32(reader["Номер_группы"].ToString()),
-                            subgroup = Convert.ToInt32(reader["Номер_подгруппы"].ToString()),
+                            group_id = Convert.ToInt32(reader["Код_группы"].ToString()),
+                            group = reader["Наименование_группы"].ToString(),
                             coors = Convert.ToInt32(reader["Курс"].ToString()),
                             complited = Convert.ToInt32(reader["Сданных"].ToString()),
                             not_complited = Convert.ToInt32(reader["Не_сданных"].ToString()),

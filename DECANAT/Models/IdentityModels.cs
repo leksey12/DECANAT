@@ -33,7 +33,7 @@ namespace DECANAT.Models
         {
             base.OnModelCreating(modelBuilder); // MUST go first.
 
-            modelBuilder.HasDefaultSchema("ALEKSEY"); // Use uppercase!
+            modelBuilder.HasDefaultSchema("ALEKS"); // Use uppercase!
 
             modelBuilder.Entity<ApplicationUser>().ToTable("AspNetUsers");
             modelBuilder.Entity<IdentityRole>().ToTable("AspNetRoles");

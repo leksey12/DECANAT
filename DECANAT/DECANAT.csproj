@@ -212,7 +212,6 @@
     <Compile Include="ModelData\Speciality.cs" />
     <Compile Include="ModelData\Student.cs" />
     <Compile Include="ModelData\Study.cs" />
-    <Compile Include="ModelData\Subgroup.cs" />
     <Compile Include="ModelData\Teacher.cs" />
     <Compile Include="ModelData\TeacherWork.cs" />
     <Compile Include="ModelData\UserRole.cs" />
@@ -232,7 +231,6 @@
     <Compile Include="Repository\SpecialityRepozitory.cs" />
     <Compile Include="Repository\StudentRepozitory.cs" />
     <Compile Include="Repository\StudingRepizitory.cs" />
-    <Compile Include="Repository\SubgroupRepozitory.cs" />
     <Compile Include="Repository\TeacherRepozitory.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
     <Compile Include="Repository\WorkRepository.cs" />
@@ -312,11 +310,8 @@
     <Content Include="Views\Admin\DeleteDiscipline.cshtml" />
     <Content Include="Views\Admin\EditDiscipline.cshtml" />
     <Content Include="Views\Admin\AddGroup.cshtml" />
-    <Content Include="Views\Admin\AddSubgroup.cshtml" />
     <Content Include="Views\Admin\DeleteGroup.cshtml" />
-    <Content Include="Views\Admin\DeleteSubgroup.cshtml" />
     <Content Include="Views\Admin\Groups.cshtml" />
-    <Content Include="Views\Admin\Subgroups.cshtml" />
     <Content Include="Views\Admin\AddStudent.cshtml" />
     <Content Include="Views\Admin\DeleteStudent.cshtml" />
     <Content Include="Views\Admin\EditStudent.cshtml" />
@@ -345,7 +340,7 @@
     <Content Include="Views\Dekan\Facultes.cshtml" />
     <Content Include="Views\Dekan\Specialitis.cshtml" />
     <Content Include="Views\Dekan\Studing.cshtml" />
-    <Content Include="Views\Dekan\Subgroups.cshtml" />
+    <Content Include="Views\Dekan\Groups.cshtml" />
     <Content Include="Views\Student\DisciplineStuding.cshtml" />
     <Content Include="Views\Teacher\DisciplineStuding.cshtml" />
   </ItemGroup>

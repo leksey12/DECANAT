@@ -22,10 +22,7 @@ namespace DECANAT.ModelData
         [Required]
         public int discipline_id { get; set; }
 
-        /// <summary>
-        /// Идентификатор подгруппы
-        /// </summary>
-        public int subgroup_id{get;set;}
+       
 
         /// <summary>
         /// Идентификатор группы
@@ -83,12 +80,8 @@ namespace DECANAT.ModelData
         /// Группа
         /// </summary>
         [Display(Name = "Группа")]
-        public int group_number{get;set;}
+        public string group_number{get;set;}
 
-        /// <summary>
-        /// Подгруппа
-        /// </summary>
-        [Display(Name = "Подгруппа")]
-        public int subgroup_number{get;set;}
+        
     }
 }
