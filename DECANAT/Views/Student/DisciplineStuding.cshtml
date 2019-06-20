@@ -32,8 +32,10 @@
                 }
             </tbody>
         </table>
-        @Html.ActionLink("Назад", "Student", new { speciality_id = ViewBag.speciality_id, group_id = ViewBag.group_id })
-        <script type="text/javascript">document.onload = new function () {
-            $('#main-table').DataTable(russian_lang);
-        };</script>
+        @*@Html.ActionLink("Назад", "Student", new { student_id = ViewBag.speciality_id})*@
+        @Html.ActionLink("Новый поиск", "Index", "Student")
+        <script type="text/javascript">
+            document.onload = new function () {
+                $('#main-table').DataTable(russian_lang);
+            };</script>
     </body>

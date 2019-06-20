@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace DECANAT.Controllers
 {
-    [Authorize(Roles = "decanat")]
+    //[Authorize(Roles = "decanat")]
     public class DekanController : Controller
     {
         public ActionResult Facultes()

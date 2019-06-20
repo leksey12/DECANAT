@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace DECANAT.Controllers
 {
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private string ParseOracleError(string error)
@@ -304,7 +304,7 @@ namespace DECANAT.Controllers
         public ActionResult Students(int group_id)
         {
             Group group = UnitOfWork.Groups.Get(group_id);
-            
+            ViewBag.speciality_id = group.speciality_id;
             ViewBag.group_id = group_id;
             ViewBag.faculty = group.faculty_name;
             ViewBag.speciality_name = group.speciality_name;
@@ -387,6 +387,8 @@ namespace DECANAT.Controllers
         public ActionResult Works(int group_id)
         {
             Group group = UnitOfWork.Groups.Get(group_id);
+            ViewBag.speciality_id = group.speciality_id;
+            ViewBag.group_id = group.id;
             ViewBag.speciality_name = group.speciality_name;
             ViewBag.speciality_number = group.speciality_number;
             ViewBag.coors = group.coors;

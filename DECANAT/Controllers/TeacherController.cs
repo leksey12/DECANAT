@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace DECANAT.Controllers
 {
-    [Authorize(Roles = "teacher")]
+    //[Authorize(Roles = "teacher")]
     public class TeacherController : Controller
     {
         // GET: Teacher
