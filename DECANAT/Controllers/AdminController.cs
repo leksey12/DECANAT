@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace DECANAT.Controllers
 {
-    //[Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private string ParseOracleError(string error)
